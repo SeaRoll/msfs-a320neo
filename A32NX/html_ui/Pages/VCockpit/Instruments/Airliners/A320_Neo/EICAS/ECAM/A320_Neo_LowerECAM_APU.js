@@ -55,10 +55,6 @@ var A320_Neo_LowerECAM_APU;
                 this.APUGenInfo.setAttribute("visibility", "visible");
             }
 
-            if (currentAPUMasterState === 0) {
-                // TODO: put xx instead of numbers in APU gauge if apu master is off
-            }
-
             if (this.APUStartTimer >= 0) {
                 this.APUStartTimer -= _deltaTime/1000;
                 if (this.APUStartTimer <= 0) {
@@ -104,7 +100,7 @@ var A320_Neo_LowerECAM_APU;
             //AVAIL indication & bleed pressure
             if (APUPctRPM > 95) {
                 this.APUAvail.setAttribute("visibility", "visible");
-                if (SimVar.GetSimVarValue("APU GENERATOR ACTIVE", "Bool") == 1) this.APUGenAvailArrow.setAttribute("visibility", "visible");
+                if (SimVar.GetSimVarValue("APU GENERATOR ACTIVE", "Bool") == 1 && SimVar.GetSimVarValue("EXTERNAL POWER ON", "Bool") === 0) this.APUGenAvailArrow.setAttribute("visibility", "visible");
                 else this.APUGenAvailArrow.setAttribute("visibility", "hidden");
                 this.APUBleedPressure.textContent = "35";
                 this.APUBleedPressure.setAttribute("class", "APUGenParamValue");
@@ -158,6 +154,7 @@ var A320_Neo_LowerECAM_APU;
             this.apuNGauge.addGraduation(0, true, "0");
             this.apuNGauge.addGraduation(50, true);
             this.apuNGauge.addGraduation(100, true, "10");
+            this.apuNGauge.active = false
             if (_gaugeDiv != null) {
                 _gaugeDiv.appendChild(this.apuNGauge);
             }
@@ -179,16 +176,37 @@ var A320_Neo_LowerECAM_APU;
             this.apuEGTGauge.addGraduation(300, true, "3");
             this.apuEGTGauge.addGraduation(700, true, "7");
             this.apuEGTGauge.addGraduation(1000, true, "10");
+            this.apuEGTGauge.active = false
             if (_gaugeDiv != null) {
                 _gaugeDiv.appendChild(this.apuEGTGauge);
             }
+            this.apuInactiveTimer = -1
+            this.lastAPUMasterState = 0
+            this.apuShuttingDown = false
         }
 
         update(_deltaTime) {
             //Update gauges
             var currentAPUMasterState = SimVar.GetSimVarValue("FUELSYSTEM VALVE SWITCH:8", "Bool");
-            if (currentAPUMasterState === 0) {
-                this.apuNGauge.isActive = false
+            if ((currentAPUMasterState !== this.lastAPUMasterState) && currentAPUMasterState === 1) {
+                this.apuInactiveTimer = 3
+                this.lastAPUMasterState = currentAPUMasterState
+                this.apuShuttingDown = false
+            }
+            if ((currentAPUMasterState !== this.lastAPUMasterState) && currentAPUMasterState === 0) {
+                this.apuShuttingDown = true
+            }
+            if (this.apuShuttingDown && SimVar.GetSimVarValue("APU PCT RPM", "percent") === 0) {
+                this.apuEGTGauge.active = false
+                this.apuNGauge.active = false
+            }
+            if (this.apuInactiveTimer >= 0) {
+                this.apuInactiveTimer -= _deltaTime/1000
+                if (this.apuInactiveTimer <= 0) {
+                    this.apuInactiveTimer = -1
+                    this.apuEGTGauge.active = true
+                    this.apuNGauge.active = true
+                }
             }
             if (this.apuNGauge != null && this.apuEGTGauge != null) {
                 this.apuNGauge.update(_deltaTime);
@@ -198,6 +216,7 @@ var A320_Neo_LowerECAM_APU;
 
         getAPUN() {
             return SimVar.GetSimVarValue("APU PCT RPM", "percent");
+            
         }
 
         //Calculates the APU EGT Based on the RPM
@@ -223,6 +242,8 @@ var A320_Neo_LowerECAM_APU;
         }
 
         getAPUEGT() {
+            let ambient = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
+
             var n = this.getAPUN();
             var egt = (Math.round(this.getAPUEGTRaw(this.lastN <= n)/5)*5);
             this.lastN = n;
@@ -230,7 +251,8 @@ var A320_Neo_LowerECAM_APU;
                 return 100;
             } else {
                 if (n > 1) this.APUWarm = false;
-                return egt;
+                // range from getAPUEGTRaw is 10~900 C
+                return ambient + (egt - 10);
             }
         }
 
