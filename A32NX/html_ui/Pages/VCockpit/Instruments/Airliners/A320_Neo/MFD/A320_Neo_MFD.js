@@ -119,8 +119,7 @@ class A320_Neo_MFD_MainPage extends NavSystemPage {
         var externalPower = SimVar.GetSimVarValue("EXTERNAL POWER ON", "bool");
         var apuOn = SimVar.GetSimVarValue("APU SWITCH", "bool");
 
-        var isPowerAvailable = engineOn || apuOn || externalPower;
-        this.updateScreenState(isPowerAvailable);
+        this.updateScreenState();
 
         if (engineOn) {
             this.selfTestDiv.style.display = "none";
@@ -141,11 +140,11 @@ class A320_Neo_MFD_MainPage extends NavSystemPage {
         
     }
 
-    updateScreenState(isPowerAvailable) {
-        if (!isPowerAvailable) {
-            this.electricity.style.display = "none";
-        } else {
+    updateScreenState() {
+        if (SimVar.GetSimVarValue("L:ACPowerAvailable","bool")) {
             this.electricity.style.display = "block";
+        } else {
+            this.electricity.style.display = "none";
         }
     }
 
@@ -377,7 +376,7 @@ class A320_Neo_MFD_Map extends MapInstrumentElement {
         this.zoomRanges = [10, 20, 40, 80, 160, 320];
     }
     updateTopOfDescent() {
-        let showTopOfDescent = SimVar.GetSimVarValue("L:AIRLINER_FMS_SHOW_TOP_DSCNT", "number") === 1;
+        let showTopOfDescent = true;
         if (showTopOfDescent) {
             if (!this.topOfDescentIcon) {
                 this.topOfDescentIcon = new SvgTopOfXElement("a320-neo-top-of-descent", "ICON_TOP_DSCNT_WHITE");
@@ -398,7 +397,7 @@ class A320_Neo_MFD_Map extends MapInstrumentElement {
         }
     }
     updateTopOfClimb() {
-        let showTopOfClimb = SimVar.GetSimVarValue("L:AIRLINER_FMS_SHOW_TOP_CLIMB", "number") === 1;
+        let showTopOfClimb = true;
         if (showTopOfClimb) {
             if (!this.topOfClimbIcon) {
                 this.topOfClimbIcon = new SvgTopOfXElement("a320-neo-top-of-climb", "ICON_LEVEL_OFF_BLUE");
