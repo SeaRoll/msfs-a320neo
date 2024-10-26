@@ -1,109 +1,107 @@
-# MSFS A320neo Improvement Mod - Stable Version
+![FlyByWire Simulations](https://raw.githubusercontent.com/flybywiresim/branding/1391fc003d8b5d439d01ad86e2778ae0bfc8b682/tails-with-text/FBW-Color-Light.svg#gh-dark-mode-only)
+![FlyByWire Simulations](https://github.com/flybywiresim/branding/blob/master/tails-with-text/FBW-Color-Dark.svg#gh-light-mode-only)
 
-Preview of APU and DOOR ECAM pages: https://www.youtube.com/watch?v=rLaVK3nNCXc
+# FlyByWire Simulations A32NX
 
-# Important
-
-### Please note, this version does not include the full capability you may see in the progress updates on our discord server.
-### To download the BETA features, which may include bugs, please visit https://github.com/wpine215/msfs-a320neo/tree/dev-0.1.1
-
-### Please follow ALL steps in this README if you encounter any issues with installation before seeking support.
-
-## About
-The A32NX Project is a community driven open source project to create a free Airbus A320neo in Microsoft Flight Simulator that is as close to reality as possible. It  aims to enhance the default A320neo by improving the systems depth and functionality to bring it up to payware-level, all for free.
-
-Central Repository: https://github.com/wpine215/msfs-a320neo
-
-## Installation
-Installation is really simple. You only have to download the "A32NX" folder.
-
-For the Microsoft Store edition AND/OR Gamepass edition:
-* Copy the "A32NX" folder into your community package folder. It is located in:
-`C:\Users\[YOUR USERNAME]\AppData\Local\Packages\Microsoft.FlightSimulator_<RANDOMLETTERS>\LocalCache\Packages\Community`.
-
-For the Steam edition:
-* Copy the "A32NX" folder into your community package folder. It is located in:
-`C:\Users\[YOUR USERNAME]\AppData\Roaming\Microsoft Flight Simulator\Packages\Community`.
-
-For the Boxed edition:
-* Copy the "A32NX" folder into your community package folder. It is located in:
-`C:\Users\[YOUR USERNAME]\AppData\Local\MSFSPackages\Community`.
-
-If the aforementioned methods do not work:
-* You can find your community folder by going into FS2020 general options and enabling developer mode. You will see a menu appear on top. Go to tools and virtual file system. Click on watch bases and your community folder will be listed in one of the folders.
-* Please make sure you're copying the "A32NX" folder into your community package folder, NOT the "msfs-a320neo-master" folder.
-
-## Developing
-
-The A32NX package only contains files which have been modified from the original package. If you wish to work on a file that isn't present in the development branch, simply copy it over from the latest Asobo branch. Please DO NOT add, modify, or delete files from the Asobo branch.
-
-Join our Discord server to find out about the latest updates and discuss ongoing development.
+[![GitHub latest release version](https://img.shields.io/github/v/release/flybywiresim/a32nx.svg?style=flat)](https://github.com/flybywiresim/a32nx/releases/latest)
+[![Github All Releases download count](https://img.shields.io/github/downloads/flybywiresim/a32nx/total.svg?style=flat)](https://github.com/flybywiresim/a32nx/releases/latest)
+[![GitHub contributors](https://img.shields.io/github/contributors/flybywiresim/a32nx.svg?style=flat)](https://github.com/flybywiresim/a32nx/graphs/contributors)
 
 [![Discord](https://img.shields.io/discord/738864299392630914.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/UjzuHMU)
+[![Twitter](https://img.shields.io/badge/-@FlyByWireSim-e84393?label=&logo=twitter&logoColor=ffffff&color=6399AE&labelColor=00C2CB)](https://twitter.com/FlybywireSim)
+[![YouTube](https://img.shields.io/badge/-FlyByWireSimulations-e84393?label=&logo=youtube&logoColor=ffffff&color=6399AE&labelColor=00C2CB)](https://www.youtube.com/c/FlyByWire-Simulations)
+[![Facebook](https://img.shields.io/badge/-FlyByWireSimulations-e84393?label=&logo=facebook&logoColor=ffffff&color=6399AE&labelColor=00C2CB)](https://www.facebook.com/FlyByWireSimulations/)
+[![Instagram](https://img.shields.io/badge/-@FlyByWireSim-e84393?label=&logo=instagram&logoColor=ffffff&color=6399AE&labelColor=00C2CB)](https://instagram.com/flybywiresim)
 
-### Committing changes
+The A32NX Project is a community-driven open source project to create a free Airbus A320neo in Microsoft Flight Simulator that is as close to reality as possible.
 
-After making any changes to files inside the `A32NX` directory, ensure you run the `build.py` script to regenerate the `layout.json` as necessary. There's also a CI check to ensure this has been done.
+The following aircraft configuration is currently simulated or targeted:
 
-## Changelog
+### A320neo
 
-### 0.1.1
+ ```
+ Model       A320-251N
+ Engine      CFM LEAP 1A-26
+ APU         APS3200
+ FMS         Honeywell Release H3
+ FWC Std.    H2F13
+ RA          Honeywell ALA-52B
+ TAWS        Honeywell EGPWS
+ ACAS        Honeywell TPA-100B
+ ATC         Honeywell TRA-100B
+ MMR         Honeywell iMMR
+ WXR         Honeywell RDR-4000
+ ```
 
-- Removed INOP property from all ECAM page buttons
-- Added APU ECAM page
-- Added Door ECAM page
-- Added Bleed ECAM page placeholder
-- Fixed fuel consumption
-- Fixed APU startup time
-- Added MODE change indication to Navigation Display
+Please note that this configuration may change in the future as the A32NX project evolves and changes.
 
-## Known Issues (Please note that most issues are being worked on and some of them may even be fixed in the dev branch)
-- APU ECAM page doesn't display correct load percent.
-- Bleed ECAM page isn't modeled.
-- No automatic ECAM page switching for DOOR page
-- No chime coming from No smoking & Seatbelts.
-- No smoking sign doesn't use full range of motion.
-- T.O Config is not fully functional yet.
- 
+## How to download and use the aircraft
+
+To download the aircraft please go to the [FlyByWire Simulations website](https://flybywiresim.com). Please be sure to thoroughly read the [documentation](https://docs.flybywiresim.com) on how to install and use the aircraft.
+
+If you're still running into problems after reading through the documentation, feel free to jump into our Discord [#support channel](https://discord.gg/snueqJjDUN).
+
+## How to contribute
+
+If you would like to contribute to the project, see [Contributing.md](.github/Contributing.md)
+
+### Known issues and bug reporting
+
+Our [known issues](https://docs.flybywiresim.com/start/reported-issues) list contains the most commonly reported issues. Should you have an issue not found on this list, then please take a look at the reported issues within the [issue tracker](https://github.com/flybywiresim/a32nx/issues) and report a new issue if your issue isn't found there. You can also use the issue tracker to request a new feature.
 
 ## FAQ
 
-**Q: Can I download the aircraft in the current state?**
+### What liveries are available?
 
-A: Yes, the master branch contains the latest stable release. You can always download it off the dev branch, but keep in mind it is a WIP and will be unstable.
+Liveries for the A32NX can be found on [Flightsim.to](https://flightsim.to/c/liveries/flybywire-a32nx/).
 
-**Q: Where is the plane in-sim?**
+### When is the next update?
 
-A: The mod is added on top on the default A320neo from Asobo. If you want to uninstall it and revert to the original aircraft, just delete the A32NX folder in your community folder.
+We don't know, since it depends on many factors. We will announce each new stable version via [Discord](https://discord.gg/flybywire) and our social media channels listed above.
 
-**Q: What are the liveries available?**
+### How do I join the team?
 
-A: All the default A320neo liveries are working on our aircraft!
+Read [Contributing.md](.github/Contributing.md) and join our Discord to get started.
 
-**Q: When will it be released?**
+### Is the A32NX payware?
 
-A: The project is an ongoing rolling release. You can download the latest (stable) version from the master branch of this repository!
+No, it is a completely free aircraft, open-source.
 
-**Q: When is the next update?**
+### How do we report bugs?
 
-A: We don't know, since it depends on many factors. We'll however announce it each time there's an update! We are currently working on a visual roadmap to let you know what latest features we are working on!
+Please read the [known Issues and bug reporting](#known-issues-and-bug-reporting) section.
 
-**Q: How do I join the team?**
+### Is this going to be "study-level"?
 
-A: Join our Discord server and either select your role from the bot at #roles , or you DM @Kieran [Z+1].
+While many in the team dislike the term "study-level" as its use is mostly applicable to certified training devices, we are in fact very dedicated on bringing a high fidelity A320neo to the Microsoft Flight Simulator platform.
 
-**Q: Is it payware?**
+### Is feature X from the A320neo going to be implemented?
 
-A: No, it is a completely free aircraft, open-source.
+Chances are, yes! While we do not guarantee every single detail of the aircraft will eventually be represented, our goal is to produce an extremely accurate simulation based on technical data and real-world testing. This means you can be almost certain every feature of the aircraft will eventually be simulated to the best of the simulator's ability as long as the technical data backs it up.
 
-**Q: What is the roadmap/progress?**
+### Why has feature X not been implemented yet?
 
-A: You can follow our current progress on the trello: https://trello.com/b/z3jimJLq/study-level-a320neo
+It's very likely that the feature you are awaiting is already under development! However, we strive for the greatest accuracy possible when producing aircraft, and it is therefore likely that a great deal of time will be spent on developing a proper software design and gathering sufficient references before we are able to offer the feature.
 
-**Q: How do we report bugs?**
+### Why is my version not the same as what I see others using?
 
-A: If the bug is related to features introduced by our mod, please open a GitHub issue with a thorough description of it, and screenshots if necessary. Otherwise, you have two options: Report it on the discord server at #bugs-and-suggestions, or fill this form (that will be directly linked to the dev attention) :https://docs.google.com/forms/d/e/1FAIpQLSe6Bdx8x8mFmOmBoAipYoazfeomrJ8cri55NBn32MBRqIW4nA/viewform?usp=sf_link
+We have two mainline versions: stable and development. The stable version is a 'snapshot' of the development which we regard as stable with the current version of the simulator. The developer build is updated daily and is a constant work in progress and although we test thoroughly each update, minor issues may occur from time to time.
 
-**Q: What is the name of this team?**
+You can read more about the differences between the versions we offer [on our documentation portal](https://docs.flybywiresim.com/fbw-a32nx/fbw-versions/).
 
-A: Still no name! If you have a good idea, please feel free to suggest it on discord's #bugs-and-suggestions channel!
+### Is there a list of features or a changelog available?
+
+We do not keep a list of features implemented, but a lengthy [changelog](https://github.com/flybywiresim/a32nx/blob/master/.github/CHANGELOG.md) of what has been implemented, and their associated [pull requests](https://github.com/flybywiresim/a32nx/pulls) can be [found here](https://github.com/flybywiresim/a32nx/blob/master/.github/CHANGELOG.md).
+
+## License
+
+Original source code assets present in this repository are licensed under the GNU GPLv3.
+Original 3D assets are licensed under CC BY-NC 4.0.
+
+Microsoft Flight Simulator © Microsoft Corporation. The FlyByWire Simulations A32NX was created under Microsoft's "Game Content Usage Rules" using assets from Microsoft Flight Simulator, and it is not endorsed by or affiliated with Microsoft.
+
+The contents of distribution packages built from the sources in this repository are therefore licensed as follows:
+
+- in the case of original source code from FBW or compiled artifacts generated from it, under GPLv3.
+- in the case of original 3D assets from FBW, under CC BY-NC 4.0.
+- in the case of assets covered by the "Game Content Usage Rules", under the license granted by those rules.
